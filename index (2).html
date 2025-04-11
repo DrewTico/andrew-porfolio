@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Castro-Guerrero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --text-color: white;
+      --accent-color: #8b5cf6;
+      --secondary-color: #1e293b;
+      --tag-bg: #334155;
+    }
+    [data-theme="light"] {
+      --bg-color: #f9fafb;
+      --text-color: #111827;
+      --accent-color: #7c3aed;
+      --secondary-color: #e5e7eb;
+      --tag-bg: #cbd5e1;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background-color: var(--secondary-color);
+      flex-wrap: wrap;
+    }
+    header h1 {
+      font-size: 1.5rem;
+    }
+    nav a, .theme-toggle {
+      color: var(--text-color);
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .hero img {
+      border-radius: 16px;
+      max-width: 300px;
+      margin-bottom: 2rem;
+    }
+    .hero h2 {
+      font-size: 2rem;
+    }
+    .hero p {
+      max-width: 600px;
+      font-size: 1rem;
+    }
+    .button {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .skills, .contact, .projects, .resume {
+      padding: 2rem;
+      text-align: center;
+    }
+    .skills h3, .contact h3, .projects h3, .resume h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .skill-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .tag {
+      background-color: var(--tag-bg);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+    .contact p, .contact a {
+      margin: 0.25rem 0;
+    }
+    .project-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .card {
+      background-color: var(--secondary-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 300px;
+      text-align: left;
+    }
+    .card h4 {
+      margin-top: 0;
+      color: var(--accent-color);
+    }
+    .card p {
+      color: var(--text-color);
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 500px;
+      max-width: 700px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 1rem;
+      }
+      .project-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Andrew</h1>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume">Resume</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="https://via.placeholder.com/300x200.png?text=Workspace" alt="workspace" />
+    <h2>Hi! I'm Andrew 👋</h2>
+    <p>I'm a computer science student at FIU with an interest in software development, scripting, and game development. Currently seeking an internship to gain hands-on experience and grow in the tech world.</p>
+    <a class="button" href="#projects">Check out my work</a>
+  </section>
+
+  <section class="skills">
+    <h3>Skills</h3>
+    <div class="skill-tags">
+      <div class="tag">Python</div>
+      <div class="tag">Java</div>
+      <div class="tag">Web Development</div>
+      <div class="tag">ROM Hacking</div>
+      <div class="tag">Git/GitHub</div>
+      <div class="tag">Linux</div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <h3>Projects</h3>
+    <div class="project-cards">
+      <!-- Add project cards here -->
+    </div>
+  </section>
+
+  <section class="resume" id="resume">
+    <h3>Resume</h3>
+    <a class="button" href="resume.pdf" target="_blank">Download Resume</a>
+    <iframe src="resume.pdf"></iframe>
+  </section>
+
+  <section class="contact" id="contact">
+    <h3>Contact Me</h3>
+    <p>📧 Personal: iandrewcr7@gmail.com</p>
+    <p>🎓 School: acast714@fiu.edu</p>
+    <p>📞 Phone: 305-484-5585</p>
+    <p>🐱 <a href="https://github.com/andrewcg" style="color: var(--accent-color);">github.com/andrewcg</a></p>
+    <p>🔗 <a href="https://www.linkedin.com/in/andrew-castro-guerrero-5ab165259" style="color: var(--accent-color);">linkedin.com/in/andrew-castro-guerrero</a></p>
+  </section>
+
+  <script>
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+    }
+  </script>
+</body>
+</html>
