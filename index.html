@@ -47,12 +47,18 @@
       text-decoration: none;
       font-weight: 600;
     }
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero, .skills, .projects, .about, .resume, .contact {
+      padding: 2rem;
       text-align: center;
-      padding: 4rem 2rem;
     }
     .hero img {
       border-radius: 50%;
@@ -64,10 +70,6 @@
     }
     .hero h2 {
       font-size: 2rem;
-    }
-    .hero p {
-      max-width: 600px;
-      font-size: 1rem;
     }
     .button {
       background-color: var(--accent-color);
@@ -83,19 +85,6 @@
     }
     .button:hover {
       transform: scale(1.05);
-    }
-    section {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease-out;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .skills, .contact, .projects, .resume, .about {
-      padding: 2rem;
-      text-align: center;
     }
     .skill-tags {
       display: flex;
@@ -125,10 +114,6 @@
     }
     .card:hover {
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    .card h4 {
-      margin-top: 0;
-      color: var(--accent-color);
     }
     iframe {
       border: none;
@@ -198,11 +183,11 @@
   </section>
 
   <section class="about" id="about">
-  <h3>About Me</h3>
-  <p>I'm currently pursuing a Bachelor of Arts in Computer Science at Florida International University, where I’m developing my skills as both a software and game developer. My core strengths include systems programming, data structures, and version control with GitHub—key pillars that support my drive to build scalable, efficient solutions.</p>
-  <p>Whether working independently or with a team, I thrive at the intersection of logic and creativity. I've built tools and scripts in Python, Java, and JavaScript that reflect a passion for innovation and a focus on process optimization. Beyond the screen, my role as Head Coach and Assistant Coach at Miami Palmetto Senior High School speaks to my leadership and dedication to team growth.</p>
-  <p>I’m passionate about blending technology with collaboration, and I bring fresh perspectives, adaptability, and a team-first mindset to every environment I enter.</p>
-</section>
+    <h3>About Me</h3>
+    <p>I'm currently pursuing a Bachelor of Arts in Computer Science at Florida International University, where I’m developing my skills as both a software and game developer. My core strengths include systems programming, data structures, and version control with GitHub—key pillars that support my drive to build scalable, efficient solutions.</p>
+    <p>Whether working independently or with a team, I thrive at the intersection of logic and creativity. I've built tools and scripts in Python, Java, and JavaScript that reflect a passion for innovation and a focus on process optimization. Beyond the screen, my role as Head Coach and Assistant Coach at Miami Palmetto Senior High School speaks to my leadership and dedication to team growth.</p>
+    <p>I’m passionate about blending technology with collaboration, and I bring fresh perspectives, adaptability, and a team-first mindset to every environment I enter.</p>
+  </section>
 
   <section class="resume" id="resume">
     <h3>Resume</h3>
@@ -228,7 +213,9 @@
       const currentTheme = document.documentElement.getAttribute("data-theme");
       document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
     }
+
     document.getElementById("year").textContent = new Date().getFullYear();
+
     const text = document.getElementById("intro-text").textContent;
     document.getElementById("intro-text").textContent = "";
     let i = 0;
@@ -241,7 +228,7 @@
     }
     typeWriter();
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
