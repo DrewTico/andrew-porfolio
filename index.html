@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andrew Castro-Guerrero</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
       --bg-color: #0f172a;
@@ -54,8 +55,11 @@
       padding: 4rem 2rem;
     }
     .hero img {
-      border-radius: 16px;
-      max-width: 300px;
+      border-radius: 50%;
+      border: 4px solid var(--accent-color);
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
       margin-bottom: 2rem;
     }
     .hero h2 {
@@ -75,14 +79,23 @@
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
+      transition: transform 0.2s ease;
     }
-    .skills, .contact, .projects, .resume {
+    .button:hover {
+      transform: scale(1.05);
+    }
+    section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .skills, .contact, .projects, .resume, .about {
       padding: 2rem;
       text-align: center;
-    }
-    .skills h3, .contact h3, .projects h3, .resume h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
     }
     .skill-tags {
       display: flex;
@@ -96,9 +109,6 @@
       border-radius: 8px;
       font-weight: 500;
     }
-    .contact p, .contact a {
-      margin: 0.25rem 0;
-    }
     .project-cards {
       display: flex;
       flex-wrap: wrap;
@@ -111,13 +121,14 @@
       padding: 1.5rem;
       max-width: 300px;
       text-align: left;
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
     .card h4 {
       margin-top: 0;
       color: var(--accent-color);
-    }
-    .card p {
-      color: var(--text-color);
     }
     iframe {
       border: none;
@@ -125,6 +136,13 @@
       height: 500px;
       max-width: 700px;
       margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+    }
+    .contact i {
+      margin-right: 8px;
     }
     @media (max-width: 768px) {
       header {
@@ -155,7 +173,7 @@
 
   <section class="hero">
     <img src="headshot.jpg" alt="Andrew headshot" />
-    <h2>Hi! I'm Andrew 👋</h2>
+    <h2 id="intro-text">Hi! I'm Andrew 👋</h2>
     <p>I'm a computer science student at FIU with an interest in software development, scripting, and game development. Currently seeking an internship to gain hands-on experience and grow in the tech world.</p>
     <a class="button" href="#projects">Check out my work</a>
   </section>
@@ -175,8 +193,13 @@
   <section class="projects" id="projects">
     <h3>Projects</h3>
     <div class="project-cards">
-      <!-- Add project cards here -->
+      <!-- Project cards go here -->
     </div>
+  </section>
+
+  <section class="about" id="about">
+    <h3>About Me</h3>
+    <p>Driven and detail-oriented Computer Science student passionate about creating useful software and growing my skills in real-world environments. I love building tools, working on personal projects, and learning by doing.</p>
   </section>
 
   <section class="resume" id="resume">
@@ -187,18 +210,46 @@
 
   <section class="contact" id="contact">
     <h3>Contact Me</h3>
-    <p>📧 Personal: iandrewcr7@gmail.com</p>
-    <p>🎓 School: acast714@fiu.edu</p>
-    <p>📞 Phone: 305-484-5585</p>
-    <p>🐱 <a href="https://github.com/andrewcg" style="color: var(--accent-color);">github.com/andrewcg</a></p>
-    <p>🔗 <a href="https://www.linkedin.com/in/andrew-castro-guerrero-5ab165259" style="color: var(--accent-color);">linkedin.com/in/andrew-castro-guerrero</a></p>
+    <p><i class="fas fa-envelope"></i> iandrewcr7@gmail.com</p>
+    <p><i class="fas fa-user-graduate"></i> acast714@fiu.edu</p>
+    <p><i class="fas fa-phone"></i> 305-484-5585</p>
+    <p><i class="fab fa-github"></i> <a href="https://github.com/andrewcg" style="color: var(--accent-color);">github.com/andrewcg</a></p>
+    <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/andrew-castro-guerrero-5ab165259" style="color: var(--accent-color);">linkedin.com/in/andrew-castro-guerrero</a></p>
   </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Andrew Castro-Guerrero</p>
+  </footer>
 
   <script>
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute("data-theme");
       document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
     }
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const text = document.getElementById("intro-text").textContent;
+    document.getElementById("intro-text").textContent = "";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("intro-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 60);
+      }
+    }
+    typeWriter();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll("section").forEach(section => {
+      observer.observe(section);
+    });
   </script>
 </body>
 </html>
